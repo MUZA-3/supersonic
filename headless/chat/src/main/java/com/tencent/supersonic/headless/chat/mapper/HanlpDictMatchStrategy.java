@@ -55,7 +55,8 @@ public class HanlpDictMatchStrategy extends SingleMatchStrategy<HanlpMapResult> 
         // higher-similarity records are inserted first and survive LinkedHashSet dedup
         hanlpMapResults = hanlpMapResults.stream()
                 .sorted(Comparator.comparingDouble(HanlpMapResult::getSimilarity).reversed()
-                        .thenComparing((a, b) -> Integer.compare(b.getName().length(), a.getName().length())))
+                        .thenComparing((a, b) -> Integer.compare(b.getName().length(),
+                                a.getName().length())))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
         // step4. filter by similarity
